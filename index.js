@@ -1,7 +1,14 @@
 const express = require('express')
-
 const app = express()
+require('dotenv').config()
 
-app.listen('4002', () => {
-    console.log('running port ' + 4002)
+app.get('/', (req, res) => {
+    res.status(204).json({
+        ok: true,
+        uid: '1234',
+    })
+})
+
+app.listen(process.env.PORT, () => {
+    console.log(`Servidor corriendo en puerto ${process.env.PORT}`)
 })
