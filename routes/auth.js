@@ -1,18 +1,10 @@
 const { Router } = require('express')
+const { createUser } = require('../controllers/auth')
 
 const router = Router()
 
 // Create new user
-router.post(
-    '/new',
-    [
-        check('name', 'El nombre es obligatorio').not().isEmpty(),
-        check('email', 'El email es obligatorio').isEmail(),
-        check('password', 'La contraseña es obligatoria').isLength({ min: 6 }),
-        validarCampos,
-    ],
-    crearUsuario
-)
+router.post('/new', createUser)
 
 // Validate token
 router.get('/renew', (req, res) => {
