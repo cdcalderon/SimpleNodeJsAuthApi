@@ -1,3 +1,5 @@
+const { response } = require('express')
+
 const createUser = (req, res = response) => {
     return res.json({
         ok: true,
@@ -5,6 +7,22 @@ const createUser = (req, res = response) => {
     })
 }
 
+const loginUser = (req, res = response) => {
+    return res.json({
+        ok: true,
+        msg: 'loginUser',
+    })
+}
+
+const revalidateToken = (req, res = response) => {
+    return res.json({
+        ok: true,
+        msg: 'revalidateToken',
+    })
+}
+
 module.exports = {
     createUser,
+    loginUser,
+    revalidateToken,
 }
