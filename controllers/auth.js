@@ -1,4 +1,5 @@
 const { response } = require('express')
+const { validationResult } = require('express-validator')
 
 const createUser = (req, res = response) => {
     console.log(req.body)
@@ -9,6 +10,9 @@ const createUser = (req, res = response) => {
 }
 
 const loginUser = (req, res = response) => {
+    const errors = validationResult(req)
+    console.log(errors)
+
     return res.json({
         ok: true,
         msg: 'loginUser',
