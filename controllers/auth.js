@@ -11,7 +11,13 @@ const createUser = (req, res = response) => {
 
 const loginUser = (req, res = response) => {
     const errors = validationResult(req)
-    console.log(errors)
+
+    if (!errors.isEmpty()) {
+        return res.status(400).json({
+            ok: false,
+            errors: errors.mapped(),
+        })
+    }
 
     return res.json({
         ok: true,
