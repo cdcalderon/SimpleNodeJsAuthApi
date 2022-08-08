@@ -8,7 +8,14 @@ const router = Router()
 router.post('/new', createUser)
 
 // Login user
-router.post('/', [check('email', 'email is required').isEmail()], loginUser)
+router.post(
+    '/',
+    [
+        check('email', 'email is required').isEmail(),
+        check('password', 'password strenght not met').isLength({ min: 6 }),
+    ],
+    loginUser
+)
 
 // Validate token
 router.get('/renew', revalidateToken)
