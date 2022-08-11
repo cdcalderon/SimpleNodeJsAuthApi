@@ -3,17 +3,20 @@ const { validationResult } = require('express-validator')
 
 const createUser = (req, res = response) => {
     console.log(req.body)
-    if (!errors.isEmpty()) {
-        return res.status(400).json({
-            ok: false,
-            errors: errors.mapped(),
+    try {
+        if (!errors.isEmpty()) {
+            return res.status(400).json({
+                ok: false,
+                errors: errors.mapped(),
+            })
+        }
+        return res.json({
+            ok: true,
+            msg: 'User created /new',
         })
+    } catch (error) {
+        console.log(error)
     }
-
-    return res.json({
-        ok: true,
-        msg: 'User created /new',
-    })
 }
 
 const loginUser = (req, res = response) => {
